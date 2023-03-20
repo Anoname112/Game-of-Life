@@ -3,7 +3,7 @@ var ctx;
 
 var gen;
 var tTime;
-var tickTime = 30;
+var tickTime;
 var squares = new Array(bound);
 
 function initBodyCanvas () {
@@ -25,6 +25,7 @@ function initBodyCanvas () {
 function initGame () {
 	gen = 0;
 	tTime = 0;
+	tickTime = 30;
 	for (var i = 0; i < bound; i++) squares[i] = Math.floor(Math.random() * 2);
 }
 
