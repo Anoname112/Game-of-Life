@@ -25,7 +25,6 @@ function initBodyCanvas () {
 function initGame () {
 	gen = 0;
 	tTime = 0;
-	tickTime = 30;
 	for (var i = 0; i < bound; i++) squares[i] = Math.floor(Math.random() * 2);
 }
 
@@ -131,6 +130,8 @@ window.onload = function () {
 	window.onresize = onResize;
 	window.onkeydown = onKeyDown;
 	
+	tickTime = 30;
+
 	initBodyCanvas();
 	initGame();
 	
