@@ -8,6 +8,7 @@ var squares = new Array(bound);
 
 function initBodyCanvas () {
 	b = document.body;
+	b.style.margin = bodyMargin;
 	b.style.background = bodyBackColor;
 	b.style.color = bodyTextColor;
 	b.style.font = bodyFont;
