@@ -1,3 +1,4 @@
+const bodyMargin = "0";
 const bodyBackColor = "#fff";
 const bodyTextColor = "#000";
 const bodyFont = "15px Segoe UI";
