@@ -4,6 +4,8 @@ var ctx;
 var gen;
 var tTime;
 var tickTime;
+var intervalId;
+
 var squares = new Array(bound);
 
 function initBodyCanvas () {
@@ -136,7 +138,7 @@ window.onload = function () {
 	initBodyCanvas();
 	initGame();
 	
-	setInterval(timerTick, interval);
+	intervalId = setInterval(timerTick, interval);
 }
 
 function onResize () {
