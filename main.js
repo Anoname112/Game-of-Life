@@ -8,6 +8,17 @@ var intervalId;
 
 var squares = new Array(bound);
 
+window.onload = function () {
+	window.onresize = onResize;
+	
+	tickTime = 30;
+
+	initBodyCanvas();
+	initGame();
+	
+	intervalId = setInterval(timerTick, interval);
+}
+
 function initBodyCanvas () {
 	b = document.body;
 	b.style.margin = bodyMargin;
@@ -16,6 +27,7 @@ function initBodyCanvas () {
 	b.style.font = bodyFont;
 	
 	c = document.getElementById("myCanvas");
+	c.onkeydown = onKeyDown;
 	c.style.background = canvasBackColor;
 	c.style.position = canvasPosition;
 	onResize();
@@ -127,18 +139,6 @@ function timerTick () {
 		// Reset timer
 		tTime = tickTime;
 	}
-}
-
-window.onload = function () {
-	window.onresize = onResize;
-	window.onkeydown = onKeyDown;
-	
-	tickTime = 30;
-
-	initBodyCanvas();
-	initGame();
-	
-	intervalId = setInterval(timerTick, interval);
 }
 
 function onResize () {
