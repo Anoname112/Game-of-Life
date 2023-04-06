@@ -10,6 +10,7 @@ var squares = new Array(bound);
 
 window.onload = function () {
 	window.onresize = onResize;
+	window.onkeydown = onKeyDown;
 	
 	tickTime = 30;
 
@@ -27,7 +28,6 @@ function initBodyCanvas () {
 	b.style.font = bodyFont;
 	
 	c = document.getElementById("myCanvas");
-	c.onkeydown = onKeyDown;
 	c.style.background = canvasBackColor;
 	c.style.position = canvasPosition;
 	onResize();
