@@ -1,4 +1,4 @@
-var c;
+var canvas;
 var ctx;
 
 var gen;
@@ -21,26 +21,52 @@ window.onload = function () {
 }
 
 function initBodyCanvas () {
-	b = document.body;
-	b.style.margin = bodyMargin;
-	b.style.background = bodyBackColor;
-	b.style.color = bodyTextColor;
-	b.style.font = bodyFont;
+	document.body.style.margin = bodyMargin;
+	document.body.style.background = bodyBackColor;
+	document.body.style.color = bodyTextColor;
+	document.body.style.font = bodyFont;
 	
-	c = document.getElementById("myCanvas");
-	c.style.background = canvasBackColor;
-	c.style.position = canvasPosition;
+	canvas = document.getElementById("myCanvas");
+	canvas.style.background = canvasBackColor;
+	canvas.style.position = canvasPosition;
 	onResize();
-	c.style.left = (window.innerWidth - c.width) / 2;
-	c.style.top = (window.innerHeight - c.height) / 2;
+	canvas.style.left = (window.innerWidth - canvas.width) / 2;
+	canvas.style.top = (window.innerHeight - canvas.height) / 2;
 	
-	ctx = c.getContext("2d");
+	ctx = canvas.getContext("2d");
 }
 
 function initGame () {
 	gen = 0;
 	tTime = 0;
 	for (var i = 0; i < bound; i++) squares[i] = Math.floor(Math.random() * 2);
+}
+
+function onResize () {
+	canvas.width = window.innerWidth;
+	canvas.height = window.innerHeight;
+}
+
+function onKeyDown (e) {
+	switch (e.keyCode) {
+		case 38:	// Arrow up
+			if (tickTime < maxTime)  {
+				tickTime += tickChange;
+				draw();
+			}
+			break;
+		case 40:	// Arrow down
+			if (tickTime > minTime) {
+				tickTime -= tickChange;
+				draw();
+			}
+			break;
+		case 82:	// R
+			initGame();
+			break;
+		default:
+			break;
+	}
 }
 
 function getNeighbours (index) {
@@ -76,30 +102,13 @@ function getNeighbours (index) {
 	return neigh;
 }
 
-function fillRect (x, y, w, h, s) {
-	ctx.fillStyle = s == null ? "#fff" : s;
-	ctx.fillRect(x, y, w, h);
-}
-
-function drawRect (x, y, w, h, s) {
-	ctx.strokeStyle = (s == null) ? "#000" : s;
-	ctx.strokeRect(x, y, w, h);
-	ctx.stroke();
-}
-
-function drawMessage (msg, x, y) {
-	ctx.font = msgFont;
-	ctx.fillStyle = msgTextColor;
-	ctx.fillText(msg, x, y + 12);
-}
-
 function draw () {
 	// Invalidate
-	c.width = c.width;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	
 	// Prepare variables
-	var padX = (c.width - squareWidth * sqrt) / 2;
-	var padY = (c.height - squareHeight * sqrt) / 2;
+	var padX = (canvas.width - squareWidth * sqrt) / 2;
+	var padY = (canvas.height - squareHeight * sqrt) / 2;
 	
 	// Draw
 	drawMessage("Generation: " + gen, padX, padY - msgPad);
@@ -138,32 +147,5 @@ function timerTick () {
 		
 		// Reset timer
 		tTime = tickTime;
-	}
-}
-
-function onResize () {
-	c.width = window.innerWidth;
-	c.height = window.innerHeight;
-}
-
-function onKeyDown (e) {
-	switch (e.keyCode) {
-		case 38:	// Arrow up
-			if (tickTime < maxTime)  {
-				tickTime += tickChange;
-				draw();
-			}
-			break;
-		case 40:	// Arrow down
-			if (tickTime > minTime) {
-				tickTime -= tickChange;
-				draw();
-			}
-			break;
-		case 82:	// R
-			initGame();
-			break;
-		default:
-			break;
 	}
 }
