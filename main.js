@@ -1,10 +1,10 @@
 var canvas;
 var ctx;
 
+var intervalId;
 var gen;
 var tTime;
 var tickTime;
-var intervalId;
 
 var squares = new Array(bound);
 
