@@ -32,7 +32,6 @@ function initBodyCanvas () {
 	onResize();
 	canvas.style.left = (window.innerWidth - canvas.width) / 2;
 	canvas.style.top = (window.innerHeight - canvas.height) / 2;
-	
 	ctx = canvas.getContext("2d");
 }
 
