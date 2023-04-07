@@ -26,7 +26,7 @@ function initBodyCanvas () {
 	document.body.style.color = bodyTextColor;
 	document.body.style.font = bodyFont;
 	
-	canvas = document.getElementById("myCanvas");
+	canvas = getElement("myCanvas");
 	canvas.style.background = canvasBackColor;
 	canvas.style.position = canvasPosition;
 	onResize();
